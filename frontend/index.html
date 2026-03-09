@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dutch AI Agency — AI-chatbots voor jouw bedrijf</title>
-    <meta name="description" content="Jouw bedrijf, 24/7 bereikbaar. Dutch AI Agency bouwt slimme AI-chatbots die klantvragen beantwoorden, afspraken inplannen en leads genereren.">
+    <title>Dutch AI Agency — AI-oplossingen voor jouw bedrijf</title>
+    <meta name="description" content="Jouw bedrijf, 24/7 bereikbaar. Dutch AI Agency bouwt slimme AI-chatbots en professionele websites die klantvragen beantwoorden, afspraken inplannen en leads genereren.">
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -12,8 +12,8 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dutch AI Agency — AI-chatbots voor jouw bedrijf">
-    <meta property="og:description" content="Slimme AI-chatbots die klantvragen beantwoorden, afspraken inplannen en leads genereren. 24/7 bereikbaar, live binnen 1 week.">
+    <meta property="og:title" content="Dutch AI Agency — AI-oplossingen voor jouw bedrijf">
+    <meta property="og:description" content="Slimme AI-chatbots en professionele websites die klantvragen beantwoorden, afspraken inplannen en leads genereren. 24/7 bereikbaar, live binnen 1 week.">
     <meta property="og:site_name" content="Dutch AI Agency">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#060010">
@@ -46,9 +46,10 @@
         /* Dark mode (default) */
         [data-mode="dark"] {
             --bg: var(--n-950);
-            --bg-card: #0e0620;
+            --bg-card: rgba(14, 6, 32, 0.6);
+            --bg-card-solid: #0e0620;
             --bg-subtle: #160b28;
-            --border: #251840;
+            --border: rgba(37, 24, 64, 0.6);
             --border-strong: #3a2860;
             --text: #f5f2ff;
             --text-muted: #9b90c0;
@@ -58,14 +59,17 @@
             --accent-bg: #170430;
             --accent-text: #d4b8ff;
             --btn-secondary-border: #33165a;
+            --glass-bg: rgba(14, 6, 32, 0.4);
+            --glass-border: rgba(124, 14, 255, 0.1);
         }
 
         /* Light mode */
         [data-mode="light"] {
             --bg: var(--n-50);
-            --bg-card: var(--n-0);
+            --bg-card: rgba(255, 255, 255, 0.7);
+            --bg-card-solid: var(--n-0);
             --bg-subtle: var(--n-100);
-            --border: var(--n-200);
+            --border: rgba(226, 221, 240, 0.6);
             --border-strong: var(--n-300);
             --text: var(--n-800);
             --text-muted: var(--n-500);
@@ -75,6 +79,8 @@
             --accent-bg: var(--brand-100);
             --accent-text: var(--brand-600);
             --btn-secondary-border: var(--brand-200);
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(124, 14, 255, 0.08);
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -94,6 +100,37 @@
         a:hover { color: var(--brand-200); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+        /* === HEXAGON BACKGROUND === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%237c0eff' stroke-width='0.8' opacity='0.35'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='%237c0eff' stroke-width='0.8' opacity='0.2'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 55%, transparent 90%);
+            -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 55%, transparent 90%);
+            opacity: 1;
+            transition: opacity 0.4s;
+        }
+        [data-mode="light"] body::before {
+            opacity: 0.7;
+        }
+
+        body > * { position: relative; z-index: 1; }
+
+        /* === SCROLL ANIMATIONS === */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* === BUTTONS === */
         .btn {
@@ -144,6 +181,8 @@
         .btn-ghost:hover {
             background: var(--bg-subtle);
             transform: translateY(-1px);
+            border-color: var(--accent);
+            color: var(--accent-text);
         }
 
         /* === NAV === */
@@ -158,10 +197,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg);
+            background: color-mix(in srgb, var(--bg) 80%, transparent);
             border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             transition: background 0.4s, border-color 0.3s;
         }
 
@@ -253,16 +292,46 @@
             position: relative;
         }
 
-        .hero::before {
-            content: '';
+        /* Animated gradient background */
+        .hero-glow {
             position: absolute;
-            top: 60px;
-            right: 10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(124, 14, 255, 0.06) 0%, transparent 70%);
+            inset: -50px 0 -200px 0;
             pointer-events: none;
+            mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
         }
+        .hero-glow .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.85;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero-glow .orb-1 {
+            width: 600px; height: 600px;
+            background: rgba(124, 14, 255, 0.45);
+            top: -100px; right: 0%;
+            animation-delay: 0s;
+        }
+        .hero-glow .orb-2 {
+            width: 450px; height: 450px;
+            background: rgba(59, 130, 246, 0.25);
+            bottom: -10%; left: 0%;
+            animation-delay: -3s;
+        }
+        .hero-glow .orb-3 {
+            width: 350px; height: 350px;
+            background: rgba(168, 85, 247, 0.3);
+            top: 20%; left: 40%;
+            animation-delay: -5s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -20px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
+        }
+
+        /* Grid pattern - removed */
 
         .hero-eyebrow {
             font-family: 'Space Mono', monospace;
@@ -285,7 +354,7 @@
 
         .hero h1 {
             font-family: 'Fraunces', serif;
-            font-size: clamp(36px, 6vw, 62px);
+            font-size: clamp(40px, 6.5vw, 68px);
             font-weight: 600;
             line-height: 1.05;
             color: var(--text);
@@ -297,9 +366,9 @@
         }
 
         .hero-sub {
-            font-size: 16px;
+            font-size: 17px;
             color: var(--text-muted);
-            max-width: 480px;
+            max-width: 500px;
             line-height: 1.75;
             margin-bottom: 36px;
         }
@@ -365,14 +434,17 @@
         .stat-card {
             text-align: center;
             padding: 28px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
-            transition: border-color 0.2s, transform 0.2s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
         .stat-card:hover {
             border-color: var(--border-strong);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(124, 14, 255, 0.08);
         }
 
         .stat-value {
@@ -391,20 +463,23 @@
         /* === DIENSTEN === */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
 
         .service-card {
             padding: 32px 26px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 18px;
-            transition: border-color 0.25s, box-shadow 0.25s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
         .service-card:hover {
             border-color: var(--accent);
             box-shadow: 0 0 0 1px var(--accent), 0 12px 40px rgba(124, 14, 255, 0.08);
+            transform: translateY(-2px);
         }
 
         .service-icon {
@@ -440,16 +515,19 @@
         }
 
         .demo-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 18px;
             padding: 28px;
-            transition: border-color 0.25s, box-shadow 0.25s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
             cursor: default;
         }
         .demo-card:hover {
             border-color: var(--accent);
             box-shadow: 0 0 0 1px var(--accent), 0 12px 40px rgba(124, 14, 255, 0.08);
+            transform: translateY(-3px);
         }
 
         .demo-tag {
@@ -552,14 +630,17 @@
 
         .pricing-card {
             padding: 32px 26px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 18px;
-            transition: border-color 0.25s, box-shadow 0.25s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
             position: relative;
         }
         .pricing-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(124, 14, 255, 0.08);
         }
 
         .pricing-card.featured {
@@ -643,9 +724,11 @@
         .cta-inner {
             text-align: center;
             padding: 64px 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             position: relative;
             overflow: hidden;
         }
@@ -807,10 +890,15 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="container">
+    <div class="hero-glow">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="container" style="position:relative; z-index:1;">
         <div class="hero-eyebrow">Dutch AI Agency</div>
         <h1>Jouw bedrijf.<br>24/7 <em>bereikbaar.</em></h1>
-        <p class="hero-sub">Slimme AI-chatbots die klantvragen beantwoorden, afspraken inplannen en leads genereren. Zonder extra personeel. Live binnen 1 week.</p>
+        <p class="hero-sub">AI-chatbots en professionele websites die klantvragen beantwoorden, afspraken inplannen en leads genereren. Zonder extra personeel. Live binnen 1 week.</p>
         <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary">Gratis demo aanvragen</a>
             <a href="#demos" class="btn btn-secondary">Bekijk live demo's</a>
@@ -822,17 +910,17 @@
 <section class="stats">
     <div class="container">
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">24/7</div>
+            <div class="stat-card fade-up">
+                <div class="stat-value" data-count="24/7">24/7</div>
                 <div class="stat-label">Altijd bereikbaar</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">&lt;3 sec</div>
+            <div class="stat-card fade-up">
+                <div class="stat-value" data-count="<3">&lt;3 sec</div>
                 <div class="stat-label">Reactietijd</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">0</div>
-                <div class="stat-label">Extra personeel nodig</div>
+            <div class="stat-card fade-up">
+                <div class="stat-value" data-count="1">1 week</div>
+                <div class="stat-label">Van idee tot live</div>
             </div>
         </div>
     </div>
@@ -843,30 +931,37 @@
     <div class="container">
         <div class="section-label">01 — Diensten</div>
         <div class="section-head">
-            <h2>Wat onze chatbots voor je doen</h2>
-            <p>Drie kernfuncties die direct waarde leveren voor jouw bedrijf.</p>
+            <h2>Wat we voor je bouwen</h2>
+            <p>Alles wat jouw bedrijf nodig heeft om online professioneel en bereikbaar te zijn.</p>
         </div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card fade-up">
                 <div class="service-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 </div>
-                <h3>Klantenservice</h3>
-                <p>Beantwoordt klantvragen direct, op basis van jouw bedrijfsinformatie. Van openingstijden tot productadvies — altijd het juiste antwoord.</p>
+                <h3>AI-chatbot op maat</h3>
+                <p>Beantwoordt klantvragen direct, plant afspraken in en vangt leads op. 24/7, getraind op jouw bedrijfsinformatie en tone of voice.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-up">
                 <div class="service-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
-                <h3>Afspraken inplannen</h3>
-                <p>Klanten plannen zelf een afspraak via de chat. Automatisch gekoppeld aan je agenda. Geen heen-en-weer gebel meer.</p>
+                <h3>Professionele website</h3>
+                <p>Moderne, snelle website die past bij jouw merk. Ontworpen om te converteren, gebouwd om indruk te maken op elke bezoeker.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-up">
                 <div class="service-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
-                <h3>Leads genereren</h3>
-                <p>Vangt contactgegevens op van geinteresseerde bezoekers. Naam, e-mail, vraag — alles netjes verzameld voor jouw follow-up.</p>
+                <h3>Hosting & onderhoud</h3>
+                <p>Wij regelen de techniek. Snelle hosting, SSL-certificaat, updates en monitoring. Jij focust op je bedrijf, wij op de technologie.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c0eff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3>Setup & configuratie</h3>
+                <p>Alles wordt voor je ingericht en klaargemaakt. Van domein tot chatbot-training. Gewoon achterover leunen, wij bouwen.</p>
             </div>
         </div>
     </div>
@@ -878,13 +973,13 @@
         <div class="section-label">02 — Live demo's</div>
         <div class="section-head">
             <h2>Bekijk het in actie</h2>
-            <p>Drie live chatbots die we gebouwd hebben. Probeer ze zelf.</p>
+            <p>Drie live demo's van websites + chatbots die we gebouwd hebben. Probeer ze zelf.</p>
         </div>
         <div class="demos-grid">
-            <div class="demo-card">
+            <div class="demo-card fade-up">
                 <span class="demo-tag">Restaurant</span>
                 <h3>NORTH</h3>
-                <p>Chatbot voor een restaurant. Beantwoordt vragen over het menu, openingstijden en reserveringen.</p>
+                <p>Complete website met chatbot voor een restaurant. Beantwoordt vragen over het menu, openingstijden en reserveringen.</p>
                 <div class="demo-features">
                     <span class="demo-feature">Reserveringen</span>
                     <span class="demo-feature">Menu info</span>
@@ -893,10 +988,10 @@
                 </div>
                 <a href="/demo.html" class="btn btn-ghost">Probeer live demo &rarr;</a>
             </div>
-            <div class="demo-card">
+            <div class="demo-card fade-up">
                 <span class="demo-tag">Installateur</span>
                 <h3>Van Dijk Installatie</h3>
-                <p>Chatbot voor een installatiebedrijf. Neemt storingen aan, plant afspraken en geeft offertes.</p>
+                <p>Website met chatbot voor een installatiebedrijf. Neemt storingen aan, plant afspraken en geeft offertes.</p>
                 <div class="demo-features">
                     <span class="demo-feature">Storingen</span>
                     <span class="demo-feature">Offertes</span>
@@ -905,17 +1000,17 @@
                 </div>
                 <a href="/demo-installateur.html" class="btn btn-ghost">Probeer live demo &rarr;</a>
             </div>
-            <div class="demo-card">
-                <span class="demo-tag">Wellness Coach</span>
-                <h3>Puur Marleen</h3>
-                <p>Chatbot voor een wellness- en coachingpraktijk. Beantwoordt vragen over diensten, prijzen en beschikbaarheid.</p>
+            <div class="demo-card fade-up">
+                <span class="demo-tag">Coaching</span>
+                <h3>Balans by Sanne</h3>
+                <p>Website met chatbot voor een holistische coachingpraktijk. Beantwoordt vragen over diensten, trajecten en beschikbaarheid.</p>
                 <div class="demo-features">
-                    <span class="demo-feature">Diensten</span>
-                    <span class="demo-feature">Prijzen</span>
-                    <span class="demo-feature">Bosbaden</span>
                     <span class="demo-feature">Coaching</span>
+                    <span class="demo-feature">Trajecten</span>
+                    <span class="demo-feature">Yoga</span>
+                    <span class="demo-feature">Bosbaden</span>
                 </div>
-                <a href="/demo-puurmarleen.html" class="btn btn-ghost">Probeer live demo &rarr;</a>
+                <a href="/demo-balans.html" class="btn btn-ghost">Probeer live demo &rarr;</a>
             </div>
         </div>
     </div>
@@ -927,23 +1022,23 @@
         <div class="section-label">03 — Werkwijze</div>
         <div class="section-head">
             <h2>Hoe het werkt</h2>
-            <p>Van eerste gesprek tot live chatbot in drie stappen.</p>
+            <p>Van eerste gesprek tot live website en chatbot in drie stappen.</p>
         </div>
         <div class="steps-grid">
-            <div class="step">
+            <div class="step fade-up">
                 <div class="step-number">1</div>
                 <h3>Kennismaken</h3>
-                <p>Gratis gesprek waarin we bespreken wat jouw bedrijf nodig heeft en hoe een chatbot je kan helpen.</p>
+                <p>Gratis gesprek waarin we bespreken wat jouw bedrijf nodig heeft en hoe AI je kan helpen groeien.</p>
             </div>
-            <div class="step">
+            <div class="step fade-up">
                 <div class="step-number">2</div>
                 <h3>Op maat bouwen</h3>
-                <p>We trainen de chatbot met jouw bedrijfsinfo, tone of voice en processen. Volledig op maat.</p>
+                <p>We bouwen je website en trainen de chatbot met jouw bedrijfsinfo, tone of voice en processen. Volledig op maat.</p>
             </div>
-            <div class="step">
+            <div class="step fade-up">
                 <div class="step-number">3</div>
                 <h3>Live in 1 week</h3>
-                <p>De chatbot staat op je website en is direct klaar om klanten te helpen. 24 uur per dag, 7 dagen per week.</p>
+                <p>Alles staat online en is direct klaar om klanten te helpen. 24 uur per dag, 7 dagen per week.</p>
             </div>
         </div>
     </div>
@@ -958,10 +1053,10 @@
             <p>Geen verborgen kosten. Maandelijks opzegbaar.</p>
         </div>
         <div class="pricing-grid">
-            <div class="pricing-card">
+            <div class="pricing-card fade-up">
                 <h3>Starter</h3>
                 <div class="price">&euro;249<span>/maand</span></div>
-                <div class="price-sub">Perfect om te starten</div>
+                <div class="price-sub">Chatbot voor je bestaande site</div>
                 <ul class="pricing-features">
                     <li>1 AI-chatbot</li>
                     <li>500 gesprekken/maand</li>
@@ -972,22 +1067,23 @@
                 </ul>
                 <a href="#contact" class="btn btn-ghost">Kies Starter</a>
             </div>
-            <div class="pricing-card featured">
+            <div class="pricing-card featured fade-up">
                 <div class="pricing-popular">Meest gekozen</div>
                 <h3>Professional</h3>
                 <div class="price">&euro;499<span>/maand</span></div>
-                <div class="price-sub">Voor groeiende bedrijven</div>
+                <div class="price-sub">Website + chatbot + hosting</div>
                 <ul class="pricing-features">
                     <li>Alles van Starter</li>
+                    <li>Complete professionele website</li>
+                    <li>Hosting inbegrepen</li>
                     <li>2.000 gesprekken/maand</li>
                     <li>Afspraken inplannen</li>
                     <li>Lead capture</li>
-                    <li>Wekelijkse rapportage</li>
                     <li>Prioriteit support</li>
                 </ul>
                 <a href="#contact" class="btn btn-primary">Kies Professional</a>
             </div>
-            <div class="pricing-card">
+            <div class="pricing-card fade-up">
                 <h3>Enterprise</h3>
                 <div class="price">&euro;899<span>/maand</span></div>
                 <div class="price-sub">Maximale automatisering</div>
@@ -1008,9 +1104,9 @@
 <!-- CTA -->
 <section class="cta-section" id="contact">
     <div class="container">
-        <div class="cta-inner">
+        <div class="cta-inner fade-up">
             <h2>Klaar om 24/7<br><em>bereikbaar</em> te zijn?</h2>
-            <p>Plan een gratis demo-gesprek. We laten zien wat een chatbot voor jouw specifieke bedrijf kan doen.</p>
+            <p>Plan een gratis demo-gesprek. We laten zien wat een chatbot en website voor jouw specifieke bedrijf kan doen.</p>
             <a href="mailto:dutchaiagency.contact@gmail.com?subject=Gratis%20demo%20aanvragen&body=Hoi!%20Ik%20ben%20ge%C3%AFnteresseerd%20in%20een%20AI-chatbot%20voor%20mijn%20bedrijf.%0A%0ABedrijfsnaam:%0AWat%20voor%20bedrijf:%0AWat%20wil%20ik%20automatiseren:%0A" class="btn btn-primary">Gratis demo aanvragen</a>
         </div>
     </div>
@@ -1022,7 +1118,7 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="footer-logo"><svg width="38" height="38" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="50,3 94,27 94,73 50,97 6,73 6,27" stroke="var(--accent)" stroke-width="0.7" fill="none" opacity="0.25"/><polygon points="50,13 86,33 86,67 50,87 14,67 14,33" stroke="var(--accent)" stroke-width="1.6" fill="none" opacity="0.9"/><polygon points="50,13 86,33 86,67 50,87 14,67 14,33" fill="var(--accent)" opacity="0.06"/><path d="M 22,50 L 50,27 L 50,73 L 22,50" stroke="var(--accent)" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M 50,27 C 81,27 81,73 50,73" stroke="var(--accent)" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="logo-text">D<span class="ai">AI</span>A</span></div>
-                <p>Dutch AI Agency bouwt slimme chatbots voor het MKB. Jouw bedrijf, 24/7 bereikbaar.</p>
+                <p>Dutch AI Agency bouwt AI-chatbots en professionele websites voor het MKB. Jouw bedrijf, 24/7 bereikbaar.</p>
                 <div class="footer-social">
                     <a href="https://instagram.com/dutchaiagency" target="_blank" title="Instagram">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1086,6 +1182,22 @@
         root.dataset.mode = next;
         localStorage.setItem('daia-mode', next);
     });
+
+    // Scroll animations with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                // Stagger animation for siblings
+                const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+                const index = Array.from(siblings).indexOf(entry.target);
+                entry.target.style.transitionDelay = `${index * 0.1}s`;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
 </body>

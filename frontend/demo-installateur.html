@@ -20,11 +20,25 @@
             --text-light: #6b7280;
         }
 
+        html { background: #fff; }
         body {
             font-family: 'DM Sans', -apple-system, sans-serif;
             color: var(--text);
-            background: #fff;
+            background: transparent;
         }
+
+        /* Technical blueprint grid - industrial, precise */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect x='0' y='0' width='60' height='60' fill='none' stroke='%231b4332' stroke-width='0.5' opacity='0.15'/%3E%3Ccircle cx='0' cy='0' r='2' fill='%231b4332' opacity='0.2'/%3E%3Ccircle cx='60' cy='0' r='2' fill='%231b4332' opacity='0.2'/%3E%3Ccircle cx='0' cy='60' r='2' fill='%231b4332' opacity='0.2'/%3E%3Ccircle cx='60' cy='60' r='2' fill='%231b4332' opacity='0.2'/%3E%3Cline x1='30' y1='0' x2='30' y2='60' stroke='%231b4332' stroke-width='0.3' opacity='0.08'/%3E%3Cline x1='0' y1='30' x2='60' y2='30' stroke='%231b4332' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+        body > * { position: relative; z-index: 1; }
 
         /* NAV */
         nav {
@@ -80,7 +94,7 @@
         }
         .hero-content h1 {
             font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.4rem, 5vw, 3.5rem); line-height: 1.15;
+            font-size: clamp(2.6rem, 5.5vw, 3.8rem); line-height: 1.12;
             margin-bottom: 16px;
         }
         .hero-content h1 span { color: var(--yellow); }
@@ -123,7 +137,7 @@
 
         /* TRUST BAR */
         .trust-bar {
-            background: #fff; border-bottom: 1px solid #f0f0f0;
+            background: transparent; border-bottom: 1px solid #f0f0f0;
             padding: 20px; display: flex; justify-content: center;
             gap: 48px; flex-wrap: wrap;
         }
@@ -134,7 +148,7 @@
         .trust-item .icon { font-size: 18px; }
 
         /* SERVICES */
-        .services { padding: 80px 20px; background: var(--light); }
+        .services { padding: 80px 20px; background: transparent; }
         .container { max-width: 1100px; margin: 0 auto; }
         .section-label {
             font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
@@ -157,7 +171,7 @@
             background: #fff; border-radius: 12px; padding: 28px;
             border: 1px solid #e8e8e8; transition: all 0.3s;
         }
-        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: var(--green-light); }
         .service-icon {
             width: 48px; height: 48px; background: rgba(27,67,50,0.08);
             border-radius: 12px; display: flex; align-items: center; justify-content: center;
@@ -191,7 +205,7 @@
         .usp-label { font-size: 14px; opacity: 0.8; }
 
         /* REVIEWS */
-        .reviews { padding: 80px 20px; background: #fff; }
+        .reviews { padding: 80px 20px; background: transparent; }
         .reviews-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
         }
@@ -205,7 +219,7 @@
         .review-source { font-size: 12px; color: var(--text-light); }
 
         /* PRICING */
-        .pricing { padding: 80px 20px; background: var(--light); }
+        .pricing { padding: 80px 20px; background: transparent; }
         .pricing-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
             max-width: 800px; margin: 0 auto;
@@ -255,7 +269,7 @@
         }
 
         /* CONTACT INFO */
-        .contact { padding: 60px 20px; background: #fff; }
+        .contact { padding: 60px 20px; background: transparent; }
         .contact-grid {
             max-width: 1100px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;

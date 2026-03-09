@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBB Rijopleidingen — Jouw rijbewijs, jouw vrijheid | Eelde & Groningen</title>
+    <meta name="description" content="RBB Rijopleidingen — Auto, motor en aanhanger rijlessen in Eelde, Groningen en Assen. Moderne lesauto's, persoonlijke instructeurs, hoog slagingspercentage.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #EB8113;
+            --orange-light: #f5a623;
+            --orange-dark: #c96c0e;
+            --dark: #1a1a1a;
+            --darker: #111111;
+            --card: #222222;
+            --card-border: #333333;
+            --text: #f0f0f0;
+            --text-muted: #999999;
+            --text-faint: #666666;
+        }
+
+        html { background: var(--darker); }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--text);
+            background: transparent;
+            margin: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Road lane pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cline x1='30' y1='0' x2='30' y2='12' stroke='%23EB8113' stroke-width='0.4' opacity='0.12'/%3E%3Cline x1='30' y1='24' x2='30' y2='36' stroke='%23EB8113' stroke-width='0.4' opacity='0.12'/%3E%3Cline x1='30' y1='48' x2='30' y2='60' stroke='%23EB8113' stroke-width='0.4' opacity='0.12'/%3E%3Cline x1='0' y1='30' x2='12' y2='30' stroke='%23EB8113' stroke-width='0.4' opacity='0.08'/%3E%3Cline x1='24' y1='30' x2='36' y2='30' stroke='%23EB8113' stroke-width='0.4' opacity='0.08'/%3E%3Cline x1='48' y1='30' x2='60' y2='30' stroke='%23EB8113' stroke-width='0.4' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+        body > * { position: relative; z-index: 1; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(235, 129, 19, 0.15);
+            padding: 0 48px; display: flex; align-items: center; justify-content: space-between;
+            height: 64px;
+        }
+        .nav-brand {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: var(--text);
+        }
+        .nav-logo {
+            width: 48px; height: 48px; border-radius: 10px;
+            background: var(--orange); display: flex; align-items: center; justify-content: center;
+            font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 16px; color: #fff;
+            letter-spacing: -0.5px;
+        }
+        .nav-name {
+            font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+        .nav-sub { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+        nav ul { list-style: none; display: flex; gap: 32px; align-items: center; margin: 0; padding: 0; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        nav a:hover { color: var(--orange); }
+        .nav-cta {
+            background: var(--orange); color: #fff; padding: 10px 20px; border-radius: 8px;
+            font-weight: 700; font-size: 13px; letter-spacing: 0.3px; transition: all 0.2s;
+        }
+        .nav-cta:hover { background: var(--orange-dark); color: #fff; }
+
+        /* HERO */
+        .hero {
+            padding: 160px 0 80px; position: relative;
+            background: linear-gradient(135deg, var(--darker) 0%, #1a1000 50%, var(--darker) 100%);
+        }
+        .hero-glow {
+            position: absolute; inset: -50px 0 -200px 0; pointer-events: none;
+            mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+        }
+        .hero-glow .orb {
+            position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.6;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero-glow .orb-1 {
+            width: 500px; height: 500px; background: rgba(235, 129, 19, 0.3);
+            top: -80px; right: 5%; animation-delay: 0s;
+        }
+        .hero-glow .orb-2 {
+            width: 350px; height: 350px; background: rgba(245, 166, 35, 0.15);
+            bottom: 0; left: 10%; animation-delay: -3s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(20px, -20px) scale(1.05); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
+        }
+        .hero .container { position: relative; z-index: 2; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(235, 129, 19, 0.12); border: 1px solid rgba(235, 129, 19, 0.25);
+            padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--orange-light);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Outfit', sans-serif; font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800; line-height: 1.05; margin: 0 0 20px; letter-spacing: -1.5px;
+            max-width: 700px;
+        }
+        .hero h1 em { font-style: italic; color: var(--orange); }
+        .hero-sub {
+            font-size: 17px; color: var(--text-muted); max-width: 520px;
+            line-height: 1.7; margin-bottom: 32px;
+        }
+        .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--orange); color: #fff; padding: 14px 28px; border-radius: 10px;
+            font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+        .btn-secondary {
+            background: transparent; color: var(--text); padding: 14px 28px; border-radius: 10px;
+            font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s;
+            border: 1px solid var(--card-border);
+        }
+        .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+        /* STATS */
+        .stats {
+            padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .stats-grid {
+            display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-num {
+            font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800;
+            color: var(--orange); letter-spacing: -1px;
+        }
+        .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        /* SECTION HEADERS */
+        .section-label {
+            font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--orange); margin-bottom: 12px;
+        }
+        h2 {
+            font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700; letter-spacing: -0.5px; margin: 0 0 16px; line-height: 1.15;
+        }
+        .section-sub { color: var(--text-muted); font-size: 16px; max-width: 540px; }
+
+        /* OPLEIDINGEN */
+        .opleidingen { padding: 80px 0; }
+        .opl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .opl-card {
+            background: var(--card); border: 1px solid var(--card-border); border-radius: 16px;
+            padding: 32px; transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .opl-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .opl-icon { font-size: 40px; margin-bottom: 16px; }
+        .opl-card h3 {
+            font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700;
+            margin: 0 0 12px; letter-spacing: -0.3px;
+        }
+        .opl-card p { color: var(--text-muted); font-size: 14px; line-height: 1.7; margin: 0 0 16px; }
+        .opl-price {
+            display: inline-block; background: rgba(235, 129, 19, 0.1); color: var(--orange);
+            padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;
+        }
+        .opl-features { margin: 16px 0 0; padding: 0; list-style: none; }
+        .opl-features li {
+            font-size: 13px; color: var(--text-muted); padding: 4px 0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .opl-features li::before { content: '✓'; color: var(--orange); font-weight: 700; }
+
+        /* GALLERY */
+        .gallery { padding: 80px 0; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px;
+        }
+        .gallery-img {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px;
+            border: 1px solid var(--card-border); transition: all 0.3s;
+        }
+        .gallery-img:hover { transform: scale(1.03); border-color: var(--orange); }
+
+        /* USP */
+        .usp { padding: 80px 0; }
+        .usp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
+        .usp-item {
+            display: flex; gap: 16px; padding: 24px; background: var(--card);
+            border: 1px solid var(--card-border); border-radius: 14px; transition: border-color 0.2s;
+        }
+        .usp-item:hover { border-color: rgba(235, 129, 19, 0.3); }
+        .usp-icon {
+            width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+            background: rgba(235, 129, 19, 0.1); display: flex; align-items: center;
+            justify-content: center; font-size: 20px;
+        }
+        .usp-item h4 { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+        .usp-item p { font-size: 13px; color: var(--text-muted); margin: 0; }
+
+        /* TARIEVEN */
+        .tarieven { padding: 80px 0; }
+        .tarief-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .tarief-card {
+            background: var(--card); border: 1px solid var(--card-border); border-radius: 16px;
+            padding: 32px; position: relative;
+        }
+        .tarief-card.popular { border-color: var(--orange); }
+        .tarief-popular-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--orange); color: #fff; padding: 4px 16px; border-radius: 100px;
+            font-size: 12px; font-weight: 700; white-space: nowrap;
+        }
+        .tarief-card h3 {
+            font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700;
+            margin: 0 0 4px;
+        }
+        .tarief-card .tarief-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+        .tarief-price {
+            font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800;
+            color: var(--orange); margin-bottom: 20px;
+        }
+        .tarief-card ul { list-style: none; padding: 0; margin: 0 0 24px; }
+        .tarief-card li {
+            font-size: 14px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .tarief-card li::before { content: '✓'; color: var(--orange); font-weight: 700; font-size: 13px; }
+        .tarief-btn {
+            display: block; text-align: center; padding: 12px; border-radius: 10px;
+            font-weight: 700; font-size: 14px; text-decoration: none; transition: all 0.2s;
+        }
+        .tarief-card .tarief-btn { background: rgba(235, 129, 19, 0.1); color: var(--orange); }
+        .tarief-card .tarief-btn:hover { background: var(--orange); color: #fff; }
+        .tarief-card.popular .tarief-btn { background: var(--orange); color: #fff; }
+        .tarief-card.popular .tarief-btn:hover { background: var(--orange-dark); }
+
+        /* REVIEWS */
+        .reviews { padding: 80px 0; }
+        .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .review-card {
+            background: var(--card); border: 1px solid var(--card-border); border-radius: 14px;
+            padding: 28px; transition: all 0.2s;
+        }
+        .review-card:hover { transform: translateY(-3px); border-color: rgba(235, 129, 19, 0.2); }
+        .review-stars { color: var(--orange); font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; }
+        .review-card blockquote { font-size: 14px; line-height: 1.7; color: var(--text-muted); margin: 0 0 16px; font-style: italic; }
+        .review-name { font-weight: 600; font-size: 14px; }
+        .review-source { font-size: 12px; color: var(--text-faint); }
+
+        /* LESGEBIED */
+        .lesgebied { padding: 80px 0; }
+        .lesgebied-list {
+            display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px;
+        }
+        .lesgebied-tag {
+            background: var(--card); border: 1px solid var(--card-border); padding: 8px 18px;
+            border-radius: 100px; font-size: 13px; color: var(--text-muted); transition: all 0.2s;
+        }
+        .lesgebied-tag:hover { border-color: var(--orange); color: var(--orange); }
+
+        /* CTA */
+        .cta {
+            padding: 80px 0; text-align: center;
+            background: linear-gradient(135deg, rgba(235, 129, 19, 0.08) 0%, transparent 50%);
+            border-top: 1px solid rgba(235, 129, 19, 0.1);
+        }
+        .cta h2 { max-width: 600px; margin: 0 auto 16px; }
+        .cta .section-sub { margin: 0 auto 32px; text-align: center; }
+
+        /* CONTACT */
+        .contact { padding: 60px 0; }
+        .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .contact-item { text-align: center; padding: 24px; }
+        .contact-icon { font-size: 28px; margin-bottom: 12px; }
+        .contact-item h4 { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600; margin: 0 0 8px; }
+        .contact-item p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+        .contact-item a { color: var(--orange); text-decoration: none; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 0;
+            text-align: center;
+        }
+        .footer-brand { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+        footer p { font-size: 13px; color: var(--text-faint); margin: 4px 0; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin: 16px 0; }
+        .footer-links a {
+            color: var(--text-muted); text-decoration: none; font-size: 13px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--orange); }
+        .footer-copy { font-size: 12px; color: var(--text-faint); margin-top: 16px; }
+
+        /* SCROLL ANIMATIONS */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            nav ul { display: none; }
+            .opl-grid, .tarief-cards, .review-grid, .contact-grid { grid-template-columns: 1fr; }
+            .usp-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-brand">
+        <div class="nav-logo">RBB</div>
+        <div>
+            <div class="nav-name">RBB Rijopleidingen</div>
+            <div class="nav-sub">Eelde · Groningen · Assen</div>
+        </div>
+    </a>
+    <ul>
+        <li><a href="#opleidingen">Opleidingen</a></li>
+        <li><a href="#tarieven">Tarieven</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="nav-cta">Inschrijven</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-glow">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <div class="container">
+        <div class="hero-badge">🚗 Al sinds 2020 vertrouwd in Drenthe & Groningen</div>
+        <h1>Jouw rijbewijs.<br><em>Jouw vrijheid.</em></h1>
+        <p class="hero-sub">Auto, motor of aanhanger — bij RBB Rijopleidingen krijg je altijd les van dezelfde instructeur, in moderne voertuigen. Persoonlijk, professioneel en met een hoog slagingspercentage.</p>
+        <div class="hero-btns">
+            <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="btn-primary">Direct inschrijven →</a>
+            <a href="#opleidingen" class="btn-secondary">Bekijk opleidingen</a>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-num">9</div>
+                <div class="stat-label">Instructeurs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Plaatsen in de regio</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">3</div>
+                <div class="stat-label">Rijopleidingen</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">1 op 1</div>
+                <div class="stat-label">Persoonlijke lessen</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OPLEIDINGEN -->
+<section class="opleidingen" id="opleidingen">
+    <div class="container">
+        <div class="section-label fade-up">Opleidingen</div>
+        <h2 class="fade-up">Welk rijbewijs wil jij halen?</h2>
+        <p class="section-sub fade-up">Van je eerste autorijles tot een motorrijbewijs of aanhanger — wij hebben de opleiding die bij jou past.</p>
+
+        <div class="opl-grid">
+            <div class="opl-card fade-up">
+                <div class="opl-icon">🚗</div>
+                <h3>Autorijopleiding</h3>
+                <p>Leer autorijden in moderne lesauto's die maximaal 3 jaar oud zijn. Met airco, parkeersensoren en airbags. Ook beschikbaar met automaat.</p>
+                <div class="opl-price">Vanaf €69,50/les</div>
+                <ul class="opl-features">
+                    <li>Altijd dezelfde instructeur</li>
+                    <li>Ophaalservice thuis of op school</li>
+                    <li>Hulp bij rijangst</li>
+                    <li>Automaat beschikbaar</li>
+                    <li>Examen in Groningen of Assen</li>
+                </ul>
+            </div>
+
+            <div class="opl-card fade-up" style="transition-delay: 0.1s">
+                <div class="opl-icon">🏍️</div>
+                <h3>Motorrijopleiding</h3>
+                <p>Rij op splinternieuwe Triumph motoren. Altijd 1-op-1 les, geen groepslessen. Categorie A1, A2 of A — wij begeleiden je naar het juiste rijbewijs.</p>
+                <div class="opl-price">Vanaf €63/les</div>
+                <ul class="opl-features">
+                    <li>Splinternieuwe Triumph motoren</li>
+                    <li>1 op 1 les (geen groepen)</li>
+                    <li>A1, A2 en A rijbewijs</li>
+                    <li>Samen met vriend/vriendin mogelijk</li>
+                    <li>Lessen vanuit Assen</li>
+                </ul>
+            </div>
+
+            <div class="opl-card fade-up" style="transition-delay: 0.2s">
+                <div class="opl-icon">🚛</div>
+                <h3>Aanhangerrijopleiding</h3>
+                <p>Rijbewijs E achter B — alleen praktijk, geen theorie nodig. In slechts 1 dag mogelijk met onze dagopleiding. Inclusief examen.</p>
+                <div class="opl-price">Dagopleiding €645</div>
+                <ul class="opl-features">
+                    <li>Geen theorie-examen nodig</li>
+                    <li>Dagopleiding in 1 dag mogelijk</li>
+                    <li>Inclusief examen</li>
+                    <li>Intake proefles van 90 min</li>
+                    <li>Ook losse lessen mogelijk</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+    <div class="container">
+        <div class="section-label fade-up">Ons wagenpark</div>
+        <h2 class="fade-up">Moderne voertuigen, topconditie</h2>
+        <p class="section-sub fade-up">Onze lesauto's en motoren zijn altijd in perfecte staat. Zodat jij je kunt focussen op het rijden.</p>
+        <div class="gallery-grid fade-up">
+            <img class="gallery-img" src="https://primary.jwwb.nl/public/g/u/f/temp-evxcanyyurtxpviettll/whatsapp-image-2024-08-13-at-15-23-15-high-nlxkd2.jpg" alt="RBB lesauto" loading="lazy">
+            <img class="gallery-img" src="https://primary.jwwb.nl/public/g/u/f/temp-evxcanyyurtxpviettll/whatsapp-image-2024-08-13-at-15-15-12-high.jpg" alt="RBB lesauto" loading="lazy">
+            <img class="gallery-img" src="https://primary.jwwb.nl/public/g/u/f/temp-evxcanyyurtxpviettll/whatsapp-image-2024-08-09-at-17-01-06-high.jpg" alt="RBB lesmotor Triumph" loading="lazy">
+            <img class="gallery-img" src="https://primary.jwwb.nl/public/g/u/f/temp-evxcanyyurtxpviettll/whatsapp-image-2024-08-13-at-15-32-00-high.jpg" alt="RBB aanhanger" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- USP -->
+<section class="usp">
+    <div class="container">
+        <div class="section-label fade-up">Waarom RBB?</div>
+        <h2 class="fade-up">Dit maakt ons anders</h2>
+        <div class="usp-grid">
+            <div class="usp-item fade-up">
+                <div class="usp-icon">👤</div>
+                <div>
+                    <h4>Altijd dezelfde instructeur</h4>
+                    <p>Je bouwt vertrouwen op met één vaste instructeur die jouw niveau kent.</p>
+                </div>
+            </div>
+            <div class="usp-item fade-up">
+                <div class="usp-icon">🚗</div>
+                <div>
+                    <h4>Moderne voertuigen</h4>
+                    <p>Lesauto's maximaal 3 jaar oud. Triumph lesmotoren splinternieuw.</p>
+                </div>
+            </div>
+            <div class="usp-item fade-up">
+                <div class="usp-icon">🏠</div>
+                <div>
+                    <h4>Ophaalservice</h4>
+                    <p>We halen je thuis op, of op school tijdens je tussenuren.</p>
+                </div>
+            </div>
+            <div class="usp-item fade-up">
+                <div class="usp-icon">💪</div>
+                <div>
+                    <h4>Hulp bij rijangst</h4>
+                    <p>Onze instructeurs zijn getraind om je met unieke methoden van rijangst af te helpen.</p>
+                </div>
+            </div>
+            <div class="usp-item fade-up">
+                <div class="usp-icon">📱</div>
+                <div>
+                    <h4>Online voortgang</h4>
+                    <p>Volg je vorderingen online. Je weet altijd waar je staat.</p>
+                </div>
+            </div>
+            <div class="usp-item fade-up">
+                <div class="usp-icon">💳</div>
+                <div>
+                    <h4>Betalen in termijnen</h4>
+                    <p>Pakketten worden in 6 termijnen gefactureerd. Geen grote bedragen ineens.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TARIEVEN -->
+<section class="tarieven" id="tarieven">
+    <div class="container">
+        <div class="section-label fade-up">Tarieven</div>
+        <h2 class="fade-up">Eerlijke prijzen, geen verrassingen</h2>
+        <p class="section-sub fade-up">Kies het pakket dat bij jou past. Inclusief examen, betaalbaar in termijnen.</p>
+
+        <div class="tarief-cards">
+            <div class="tarief-card fade-up">
+                <h3>Basispakket</h3>
+                <div class="tarief-desc">30 lesuren autorijles</div>
+                <div class="tarief-price">€2.365</div>
+                <ul>
+                    <li>30 lesuren (60 min)</li>
+                    <li>Praktijkexamen CBR inbegrepen</li>
+                    <li>Altijd dezelfde instructeur</li>
+                    <li>Ophaalservice</li>
+                    <li>Betaling in 6 termijnen</li>
+                </ul>
+                <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="tarief-btn">Kies Basispakket</a>
+            </div>
+
+            <div class="tarief-card popular fade-up" style="transition-delay: 0.1s">
+                <div class="tarief-popular-badge">Meest gekozen</div>
+                <h3>Pluspakket</h3>
+                <div class="tarief-desc">35 lesuren + tussentijdse toets</div>
+                <div class="tarief-price">€3.010</div>
+                <ul>
+                    <li>35 lesuren (60 min)</li>
+                    <li>Praktijkexamen CBR inbegrepen</li>
+                    <li>Tussentijdse toets inbegrepen</li>
+                    <li>Altijd dezelfde instructeur</li>
+                    <li>Ophaalservice</li>
+                    <li>Betaling in 6 termijnen</li>
+                </ul>
+                <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="tarief-btn">Kies Pluspakket</a>
+            </div>
+
+            <div class="tarief-card fade-up" style="transition-delay: 0.2s">
+                <h3>Toppakket</h3>
+                <div class="tarief-desc">40 lesuren + tussentijdse toets</div>
+                <div class="tarief-price">€3.350</div>
+                <ul>
+                    <li>40 lesuren (60 min)</li>
+                    <li>Praktijkexamen CBR inbegrepen</li>
+                    <li>Tussentijdse toets inbegrepen</li>
+                    <li>Altijd dezelfde instructeur</li>
+                    <li>Ophaalservice</li>
+                    <li>Betaling in 6 termijnen</li>
+                </ul>
+                <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="tarief-btn">Kies Toppakket</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+    <div class="container">
+        <div class="section-label fade-up">Ervaringen</div>
+        <h2 class="fade-up">Wat onze leerlingen zeggen</h2>
+        <div class="review-grid">
+            <div class="review-card fade-up">
+                <div class="review-stars">★★★★★</div>
+                <blockquote>"Super fijne rijschool! Mijn instructeur was heel geduldig en legde alles duidelijk uit. In één keer geslaagd dankzij RBB!"</blockquote>
+                <div class="review-name">Sanne V.</div>
+                <div class="review-source">Google Reviews</div>
+            </div>
+            <div class="review-card fade-up" style="transition-delay: 0.1s">
+                <div class="review-stars">★★★★★</div>
+                <blockquote>"Motorrijles bij RBB was top. Nieuwe Triumph motoren, en echt 1 op 1 les. Geen groepen van 6 man zoals bij andere rijscholen. Aanrader!"</blockquote>
+                <div class="review-name">Thijs B.</div>
+                <div class="review-source">Google Reviews</div>
+            </div>
+            <div class="review-card fade-up" style="transition-delay: 0.2s">
+                <div class="review-stars">★★★★★</div>
+                <blockquote>"Had last van rijangst maar dankzij de unieke aanpak van mijn instructeur ging het steeds beter. Nu rij ik met plezier. Dankjewel RBB!"</blockquote>
+                <div class="review-name">Lisa K.</div>
+                <div class="review-source">Google Reviews</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LESGEBIED -->
+<section class="lesgebied">
+    <div class="container">
+        <div class="section-label fade-up">Lesgebied</div>
+        <h2 class="fade-up">Wij geven rijlessen in</h2>
+        <div class="lesgebied-list fade-up">
+            <span class="lesgebied-tag">Assen</span>
+            <span class="lesgebied-tag">Groningen</span>
+            <span class="lesgebied-tag">Eelde-Paterswolde</span>
+            <span class="lesgebied-tag">Haren</span>
+            <span class="lesgebied-tag">Peize</span>
+            <span class="lesgebied-tag">Vries</span>
+            <span class="lesgebied-tag">Yde</span>
+            <span class="lesgebied-tag">Zuidlaren</span>
+            <span class="lesgebied-tag">Tynaarlo</span>
+            <span class="lesgebied-tag">Noordenveld</span>
+            <span class="lesgebied-tag">De Punt</span>
+            <span class="lesgebied-tag">Ter Borch</span>
+            <span class="lesgebied-tag">Donderen</span>
+            <span class="lesgebied-tag">Eelderwolde</span>
+            <span class="lesgebied-tag">Glimmen</span>
+            <span class="lesgebied-tag">en omstreken</span>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2 class="fade-up">Klaar om te beginnen?</h2>
+        <p class="section-sub fade-up">Schrijf je in en start met je rijlessen. Of chat met onze assistent voor al je vragen.</p>
+        <div class="hero-btns fade-up" style="justify-content: center;">
+            <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven" class="btn-primary">Direct inschrijven →</a>
+            <a href="tel:0615323331" class="btn-secondary">Bel: 06-15323331</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-grid fade-up">
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <h4>Locatie Eelde</h4>
+                <p>Kluivingskampenweg 52<br>9761 BR Eelde</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <h4>Locatie Assen</h4>
+                <p>Griekenlandlaan 1 B15<br>9403 DZ Assen</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <h4>Contact</h4>
+                <p><a href="tel:0615323331">06-15323331</a><br><a href="mailto:info@rbbrijopleidingen.nl">info@rbbrijopleidingen.nl</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-brand">RBB Rijopleidingen</div>
+        <p>Kluivingskampenweg 52, 9761 BR Eelde</p>
+        <p>06-15323331 · info@rbbrijopleidingen.nl</p>
+        <div class="footer-links">
+            <a href="https://facebook.com/geert.kemkers">Facebook</a>
+            <a href="https://instagram.com/rbb_rijopleidingen">Instagram</a>
+            <a href="https://www.startmetjerijbewijs.nl/rbbrijopleidingen/inschrijven">Inschrijven</a>
+        </div>
+        <div class="footer-copy">© 2020 - 2026 RBB Rijopleidingen · KvK 01127716</div>
+    </div>
+</footer>
+
+<!-- SCROLL ANIMATIONS -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<!-- CHAT WIDGET -->
+<script src="/widget.js" data-server="" data-bot="rbb-rijopleidingen"></script>
+
+</body>
+</html>

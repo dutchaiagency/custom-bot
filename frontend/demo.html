@@ -19,12 +19,25 @@
             --text-light: #7a7267;
         }
 
+        html { background: var(--cream); }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             color: var(--text);
-            background: #fff;
+            background: transparent;
             overflow-x: hidden;
         }
+
+        /* Subtle diamond lattice pattern - elegant, fine dining */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23c8a97e' stroke-width='0.6' opacity='0.25'/%3E%3Cpath d='M20 8L32 20L20 32L8 20Z' fill='none' stroke='%23c8a97e' stroke-width='0.4' opacity='0.12'/%3E%3C/svg%3E");
+            background-size: 40px 40px;
+        }
+        body > * { position: relative; z-index: 1; }
 
         /* NAV */
         nav {
@@ -57,9 +70,14 @@
         .hero-bg {
             position: absolute; inset: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(200,169,126,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(15,52,96,0.3) 0%, transparent 60%);
+                radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(200,169,126,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(15,52,96,0.35) 0%, transparent 60%);
+            animation: heroGlow 6s ease-in-out infinite alternate;
+        }
+        @keyframes heroGlow {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; }
         }
         .hero-content {
             text-align: center; color: #fff; position: relative; z-index: 1;
@@ -72,9 +90,10 @@
         }
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(4rem, 10vw, 8rem); font-weight: 700;
-            letter-spacing: 12px; line-height: 0.9;
+            font-size: clamp(4.5rem, 12vw, 9rem); font-weight: 700;
+            letter-spacing: 14px; line-height: 0.9;
             animation: fadeUp 0.8s ease 0.4s both;
+            text-shadow: 0 4px 60px rgba(200,169,126,0.15);
         }
         .hero-divider {
             width: 80px; height: 1px; background: var(--accent);
@@ -130,7 +149,7 @@
 
         /* INTRO STRIP */
         .intro-strip {
-            background: var(--cream); padding: 48px 20px;
+            background: transparent; padding: 48px 20px;
             display: flex; justify-content: center; gap: 64px;
             flex-wrap: wrap;
         }
@@ -145,7 +164,7 @@
         }
 
         /* STORY */
-        .story { background: #fff; }
+        .story { background: transparent; }
         .story-grid {
             max-width: 1060px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
@@ -186,7 +205,7 @@
         }
 
         /* MENU */
-        .menu { background: var(--cream); }
+        .menu { background: transparent; }
         .menu-grid {
             max-width: 960px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 1fr; gap: 48px 72px;
@@ -243,7 +262,7 @@
         .menu-highlight .price span { font-size: 14px; opacity: 0.6; }
 
         /* REVIEWS */
-        .reviews { background: #fff; }
+        .reviews { background: transparent; }
         .reviews-grid {
             max-width: 960px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
@@ -251,6 +270,11 @@
         .review-card {
             background: var(--cream); border-radius: 4px; padding: 32px;
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
         }
         .review-stars { color: var(--accent); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
         .review-text {
@@ -262,7 +286,7 @@
         .review-source { font-size: 11px; color: var(--text-light); }
 
         /* INFO */
-        .info { background: var(--cream); }
+        .info { background: transparent; }
         .info-grid {
             max-width: 960px; margin: 0 auto;
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;

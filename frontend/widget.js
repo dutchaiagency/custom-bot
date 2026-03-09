@@ -212,7 +212,7 @@
         <input type="text" id="daia-input" placeholder="Typ een bericht..." autocomplete="off">
         <button id="daia-send">&#9654;</button>
       </div>
-      <div class="daia-footer"><a href="https://dutchaiagency.nl" target="_blank">${config.powered_by}</a></div>
+      <div class="daia-footer"><a href="https://dutchaiagency.com" target="_blank">${config.powered_by}</a></div>
     `;
     document.body.appendChild(widget);
 
