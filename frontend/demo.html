@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NORTH - Modern Kitchen & Bar | Groningen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a1a2e;
+            --accent: #c8a97e;
+            --accent-dark: #b8956a;
+            --warm: #f5efe6;
+            --cream: #faf7f2;
+            --text: #2c2c2c;
+            --text-light: #7a7267;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 20px 48px; display: flex; align-items: center; justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(26, 26, 46, 0.97); backdrop-filter: blur(12px);
+            padding: 14px 48px;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif; color: #fff;
+            font-size: 24px; font-weight: 700; letter-spacing: 5px;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 12px; font-weight: 500; letter-spacing: 2px;
+            text-transform: uppercase; transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO */
+        .hero {
+            height: 100vh; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--primary);
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(200,169,126,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(200,169,126,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(15,52,96,0.3) 0%, transparent 60%);
+        }
+        .hero-content {
+            text-align: center; color: #fff; position: relative; z-index: 1;
+            padding: 0 20px;
+        }
+        .hero-pre {
+            font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 20px;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 10vw, 8rem); font-weight: 700;
+            letter-spacing: 12px; line-height: 0.9;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+        .hero-divider {
+            width: 80px; height: 1px; background: var(--accent);
+            margin: 28px auto; animation: fadeUp 0.8s ease 0.6s both;
+        }
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 400;
+            font-style: italic; opacity: 0.6; letter-spacing: 2px;
+            animation: fadeUp 0.8s ease 0.8s both;
+        }
+        .hero-cta {
+            display: inline-block; margin-top: 40px;
+            padding: 16px 44px; border: 1px solid var(--accent); color: var(--accent);
+            text-decoration: none; font-size: 11px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            transition: all 0.4s ease;
+            animation: fadeUp 0.8s ease 1s both;
+        }
+        .hero-cta:hover { background: var(--accent); color: var(--primary); }
+
+        .hero-scroll {
+            position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 3px;
+            text-transform: uppercase; animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SECTIONS */
+        section { padding: 100px 20px; }
+        .section-label {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--accent-dark); text-align: center; margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            text-align: center; margin-bottom: 16px;
+        }
+        .section-desc {
+            text-align: center; color: var(--text-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px; font-style: italic; max-width: 500px;
+            margin: 0 auto 56px; line-height: 1.6;
+        }
+
+        /* INTRO STRIP */
+        .intro-strip {
+            background: var(--cream); padding: 48px 20px;
+            display: flex; justify-content: center; gap: 64px;
+            flex-wrap: wrap;
+        }
+        .intro-item { text-align: center; }
+        .intro-item .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px; color: var(--accent-dark);
+        }
+        .intro-item .label {
+            font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-light); margin-top: 4px;
+        }
+
+        /* STORY */
+        .story { background: #fff; }
+        .story-grid {
+            max-width: 1060px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+        }
+        .story-visual {
+            width: 100%; aspect-ratio: 4/5; border-radius: 4px; position: relative; overflow: hidden;
+            background: linear-gradient(160deg, #2a2a3e 0%, #1a1a2e 40%, #16213e 100%);
+        }
+        .story-visual::after {
+            content: ''; position: absolute; inset: 12px;
+            border: 1px solid rgba(200,169,126,0.2); border-radius: 2px;
+        }
+        .story-visual .overlay-text {
+            position: absolute; bottom: 32px; left: 32px;
+            font-family: 'Playfair Display', serif; color: rgba(255,255,255,0.08);
+            font-size: 120px; line-height: 1; letter-spacing: 4px;
+        }
+        .story-text {}
+        .story-text .label {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--accent-dark); margin-bottom: 16px;
+        }
+        .story-text h2 {
+            font-family: 'Playfair Display', serif; font-size: 32px;
+            margin-bottom: 24px; line-height: 1.3;
+        }
+        .story-text p {
+            font-size: 15px; line-height: 1.9; color: var(--text-light); margin-bottom: 16px;
+        }
+        .story-text .signature {
+            margin-top: 28px;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 20px; color: var(--text);
+        }
+        .story-text .sig-title {
+            font-size: 12px; color: var(--text-light); letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* MENU */
+        .menu { background: var(--cream); }
+        .menu-grid {
+            max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 48px 72px;
+        }
+        .menu-category {}
+        .menu-category h3 {
+            font-family: 'Playfair Display', serif; font-size: 22px;
+            margin-bottom: 24px; position: relative; padding-bottom: 12px;
+        }
+        .menu-category h3::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 40px; height: 1px; background: var(--accent);
+        }
+        .menu-item { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .menu-item-top { display: flex; justify-content: space-between; align-items: baseline; }
+        .menu-item-name {
+            font-size: 15px; font-weight: 500;
+            font-family: 'Cormorant Garamond', serif; font-size: 18px;
+        }
+        .menu-item-price { font-weight: 600; color: var(--accent-dark); font-size: 15px; white-space: nowrap; }
+        .menu-item-dots {
+            flex: 1; margin: 0 10px; border-bottom: 1px dotted #d4cfc8;
+            position: relative; top: -4px;
+        }
+        .menu-item-desc { font-size: 12px; color: var(--text-light); margin-top: 3px; }
+        .menu-item-tag {
+            display: inline-block; font-size: 10px; padding: 2px 8px;
+            background: rgba(200,169,126,0.15); color: var(--accent-dark);
+            border-radius: 2px; margin-top: 4px; letter-spacing: 0.5px;
+        }
+
+        .menu-highlight {
+            max-width: 960px; margin: 56px auto 0; position: relative;
+            background: var(--primary); color: #fff; border-radius: 4px;
+            padding: 40px 48px; display: flex; align-items: center; justify-content: space-between;
+            overflow: hidden;
+        }
+        .menu-highlight::before {
+            content: ''; position: absolute; inset: 8px;
+            border: 1px solid rgba(200,169,126,0.15); border-radius: 2px;
+        }
+        .menu-highlight .hl-label {
+            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 8px;
+        }
+        .menu-highlight h4 {
+            font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 6px;
+        }
+        .menu-highlight p { opacity: 0.6; font-size: 14px; }
+        .menu-highlight .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px; color: var(--accent);
+        }
+        .menu-highlight .price span { font-size: 14px; opacity: 0.6; }
+
+        /* REVIEWS */
+        .reviews { background: #fff; }
+        .reviews-grid {
+            max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+        }
+        .review-card {
+            background: var(--cream); border-radius: 4px; padding: 32px;
+            position: relative;
+        }
+        .review-stars { color: var(--accent); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+        .review-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px; font-style: italic; line-height: 1.7;
+            color: var(--text); margin-bottom: 16px;
+        }
+        .review-author { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .review-source { font-size: 11px; color: var(--text-light); }
+
+        /* INFO */
+        .info { background: var(--cream); }
+        .info-grid {
+            max-width: 960px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+        }
+        .info-card {
+            background: #fff; border-radius: 4px; padding: 32px;
+        }
+        .info-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px; margin-bottom: 16px;
+        }
+        .info-card p, .info-card li {
+            font-size: 14px; line-height: 1.8; color: var(--text-light);
+        }
+        .info-card ul { list-style: none; }
+        .info-card .highlight {
+            color: var(--accent-dark); font-weight: 500; cursor: pointer;
+            transition: color 0.2s;
+        }
+        .info-card .highlight:hover { color: var(--primary); }
+
+        /* CTA BANNER */
+        .cta-banner {
+            background: var(--primary); padding: 80px 20px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(200,169,126,0.08) 0%, transparent 70%);
+        }
+        .cta-banner h2 {
+            font-family: 'Playfair Display', serif; color: #fff;
+            font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px;
+            position: relative;
+        }
+        .cta-banner p {
+            color: rgba(255,255,255,0.5); font-family: 'Cormorant Garamond', serif;
+            font-size: 18px; font-style: italic; margin-bottom: 32px;
+            position: relative;
+        }
+        .cta-btn {
+            display: inline-block; padding: 16px 48px;
+            border: 1px solid var(--accent); color: var(--accent);
+            text-decoration: none; font-size: 12px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            transition: all 0.4s; position: relative;
+        }
+        .cta-btn:hover { background: var(--accent); color: var(--primary); }
+
+        /* FOOTER */
+        footer {
+            background: #141424; color: rgba(255,255,255,0.4);
+            padding: 48px 20px; text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif; color: rgba(255,255,255,0.7);
+            font-size: 20px; letter-spacing: 5px; margin-bottom: 16px;
+        }
+        footer p { font-size: 13px; margin: 4px 0; }
+        .footer-links { margin-top: 20px; display: flex; gap: 24px; justify-content: center; }
+        .footer-links a {
+            color: rgba(255,255,255,0.35); text-decoration: none;
+            font-size: 12px; letter-spacing: 1px; transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copy {
+            margin-top: 28px; padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 14px 20px; }
+            nav.scrolled { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .story-grid { grid-template-columns: 1fr; }
+            .story-visual { aspect-ratio: 16/9; }
+            .menu-grid { grid-template-columns: 1fr; gap: 40px; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .menu-highlight { flex-direction: column; text-align: center; gap: 20px; padding: 32px; }
+            .intro-strip { gap: 32px; }
+            section { padding: 72px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <div class="nav-logo">NORTH</div>
+        <ul class="nav-links">
+            <li><a href="#story">Ons Verhaal</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#info">Bezoek</a></li>
+            <li><a href="#" onclick="document.getElementById('daia-toggle')?.click(); return false;">Reserveren</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-pre">Groningen</p>
+            <h1>NORTH</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-tagline">Modern Kitchen & Bar</p>
+            <a href="#" class="hero-cta" onclick="document.getElementById('daia-toggle')?.click(); return false;">Reserveer uw tafel</a>
+        </div>
+        <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <div class="intro-strip">
+        <div class="intro-item">
+            <div class="num">2019</div>
+            <div class="label">Geopend</div>
+        </div>
+        <div class="intro-item">
+            <div class="num">4.8</div>
+            <div class="label">Google Rating</div>
+        </div>
+        <div class="intro-item">
+            <div class="num">4</div>
+            <div class="label">Gangen Chef's Menu</div>
+        </div>
+        <div class="intro-item">
+            <div class="num">30+</div>
+            <div class="label">Lokale Leveranciers</div>
+        </div>
+    </div>
+
+    <!-- STORY -->
+    <section class="story" id="story">
+        <div class="story-grid">
+            <div class="story-visual">
+                <div class="overlay-text">N</div>
+            </div>
+            <div class="story-text">
+                <p class="label">Ons Verhaal</p>
+                <h2>Seizoensgebonden.<br>Lokaal. Eerlijk.</h2>
+                <p>Bij NORTH geloven we dat goed eten begint bij goede ingredienten. Elke week werken we met verse producten van boeren en leveranciers uit Noord-Nederland.</p>
+                <p>Onze keuken brengt internationale smaken samen met de nuchterheid en eerlijkheid van het Noorden. Geen poespas, wel karakter. Van een stevige lamsbout tot verfijnde zeebaars met saffraan.</p>
+                <p>Of je nu komt voor een snelle lunch, een uitgebreide brunch op zondag, of een avond met het chef's menu — je bent welkom.</p>
+                <div class="signature">Thomas van der Berg</div>
+                <div class="sig-title">Chef-kok & Eigenaar</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+        <p class="section-label">De Kaart</p>
+        <h2 class="section-title">Proef het Noorden</h2>
+        <p class="section-desc">Seizoensgebonden gerechten met internationale invloeden, bereid met lokale ingredienten</p>
+
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>Voorgerechten</h3>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Pompoensoep</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;9,50</span>
+                    </div>
+                    <div class="menu-item-desc">Geroosterde pompoenpitten &middot; truffelolie</div>
+                    <span class="menu-item-tag">Veganistisch</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Rundertartaar</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;14,50</span>
+                    </div>
+                    <div class="menu-item-desc">Mosterdmayonaise &middot; kappertjes &middot; roggebrood</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Gamba's</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;13,50</span>
+                    </div>
+                    <div class="menu-item-desc">Knoflookboter &middot; chilipeper &middot; warm ciabatta</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Burrata</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;12,50</span>
+                    </div>
+                    <div class="menu-item-desc">Gegrilde perzik &middot; Parmaham &middot; basilicum-pesto</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Hoofdgerechten</h3>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Lamsbout</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;26,50</span>
+                    </div>
+                    <div class="menu-item-desc">8 uur gegaard &middot; zoete aardappelpuree &middot; jus</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Gegrilde Zeebaars</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;24,50</span>
+                    </div>
+                    <div class="menu-item-desc">Venkel-sinaasappel &middot; saffraan-beurre blanc</div>
+                    <span class="menu-item-tag">Glutenvrij</span>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Entrecote 250g</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;29,50</span>
+                    </div>
+                    <div class="menu-item-desc">Pepersaus &middot; gratin dauphinois &middot; seizoensgroenten</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Vegan Curry</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;19,50</span>
+                    </div>
+                    <div class="menu-item-desc">Kikkererwten &middot; spinazie &middot; kokos &middot; naanbrood</div>
+                    <span class="menu-item-tag">Veganistisch</span>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Desserts</h3>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Cr&egrave;me Br&ucirc;l&eacute;e</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;9,50</span>
+                    </div>
+                    <div class="menu-item-desc">Madagaskar-vanille &middot; krokant karamellaagje</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Chocolade Lavakoek</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;10,50</span>
+                    </div>
+                    <div class="menu-item-desc">Vloeibare kern &middot; gezouten karamel-ijs</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Citroentaart</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;9,00</span>
+                    </div>
+                    <div class="menu-item-desc">Italiaans schuim &middot; verse frambozen</div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3>Lunch</h3>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">NORTH Burger</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;16,50</span>
+                    </div>
+                    <div class="menu-item-desc">Angus beef &middot; cheddar &middot; huisgemaakte saus &middot; friet</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Poke Bowl</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;15,50</span>
+                    </div>
+                    <div class="menu-item-desc">Verse zalm &middot; avocado &middot; edamame &middot; sesam</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-top">
+                        <span class="menu-item-name">Clubsandwich</span>
+                        <span class="menu-item-dots"></span>
+                        <span class="menu-item-price">&euro;14,50</span>
+                    </div>
+                    <div class="menu-item-desc">Kip &middot; bacon &middot; ei &middot; truffelmayo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-highlight">
+            <div>
+                <p class="hl-label">Aanbeveling van de chef</p>
+                <h4>Weekmenu &mdash; 4 Gangen</h4>
+                <p>Verrassingsmenu dat elke donderdag wisselt. Inclusief wijnpakket mogelijk.</p>
+            </div>
+            <div class="price">&euro;46 <span>p.p.</span></div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews">
+        <p class="section-label">Gasten aan het woord</p>
+        <h2 class="section-title">Wat Zij Zeggen</h2>
+        <p class="section-desc"></p>
+
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="review-text">"De lamsbout was ongelooflijk. 8 uur gegaard en het viel letterlijk van het bot. Sfeer is intiem zonder overdreven te zijn. Nieuwe favoriet in Groningen."</p>
+                <p class="review-author">Mark de V.</p>
+                <p class="review-source">Google Reviews</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="review-text">"Zondagsbrunch is een must. Verse croissants, perfect roerei, en de pannenkoeken zijn next level. Reserveer wel, want het zit snel vol."</p>
+                <p class="review-author">Lisa T.</p>
+                <p class="review-source">TheFork</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="review-text">"Chef's menu gedaan met het wijnpakket. Elke gang was een verrassing, en de sommelier wist precies de juiste wijn erbij te kiezen. Prijs-kwaliteit is top."</p>
+                <p class="review-author">Jeroen & Anne</p>
+                <p class="review-source">Google Reviews</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="info" id="info">
+        <p class="section-label">Praktisch</p>
+        <h2 class="section-title">Bezoek Ons</h2>
+        <p class="section-desc">We zien je graag. Loop binnen of reserveer via onze chat assistent.</p>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>Openingstijden</h4>
+                <ul>
+                    <li>Maandag &mdash; Gesloten</li>
+                    <li>Dinsdag t/m donderdag &mdash; 12:00 - 22:00</li>
+                    <li>Vrijdag & zaterdag &mdash; 12:00 - 23:00</li>
+                    <li>Zondag &mdash; 12:00 - 21:30</li>
+                </ul>
+                <p style="margin-top:12px; font-style:italic; font-size:13px;">Zondag: brunch 12:00 - 16:00</p>
+            </div>
+            <div class="info-card">
+                <h4>Vind Ons</h4>
+                <p>Oude Kijk in 't Jatstraat 42</p>
+                <p>9712 EK Groningen</p>
+                <p style="margin-top:12px;">050 - 820 4455</p>
+                <p>info@north-groningen.nl</p>
+                <p style="margin-top:16px;" class="highlight" onclick="document.getElementById('daia-toggle')?.click()">Chat met ons &rarr;</p>
+            </div>
+            <div class="info-card">
+                <h4>Goed om te Weten</h4>
+                <ul>
+                    <li>Terras geopend apr - okt</li>
+                    <li>Volledig rolstoeltoegankelijk</li>
+                    <li>Allergie-vriendelijk menu</li>
+                    <li>Kinderen welkom (kindermenu &euro;9,50)</li>
+                    <li>PIN &middot; Contactloos &middot; Apple Pay</li>
+                    <li>Gratis Wi-Fi</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <h2>Zin in een avond uit?</h2>
+        <p>Reserveer direct via onze chat assistent &mdash; antwoord binnen een paar seconden</p>
+        <a href="#" class="cta-btn" onclick="document.getElementById('daia-toggle')?.click(); return false;">Reserveer Nu</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">NORTH</div>
+        <p>Modern Kitchen &amp; Bar &mdash; Groningen</p>
+        <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">TikTok</a>
+            <a href="#">TheFork</a>
+        </div>
+        <div class="footer-copy">
+            &copy; 2026 NORTH Groningen &middot; Alle rechten voorbehouden
+        </div>
+    </footer>
+
+    <!-- CHAT WIDGET -->
+    <script src="/widget.js" data-server="" data-bot="north"></script>
+
+    <!-- NAV SCROLL EFFECT -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+    </script>
+
+</body>
+</html>

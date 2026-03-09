@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puur Marleen — Vitaliteitscoaching & Holistische Wellness | Groningen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --sage: #5c6b4f;
+            --sage-light: #7a8b6a;
+            --sage-dark: #3d4a34;
+            --gold: #c8a97e;
+            --gold-light: #dcc5a4;
+            --cream: #faf6f0;
+            --sand: #f2ece3;
+            --text: #3a3a3a;
+            --text-light: #7a7568;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--text);
+            background: #fff;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+            padding: 16px 48px; display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid rgba(92,107,79,0.1);
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--sage);
+        }
+        .nav-logo-icon {
+            width: 40px; height: 40px; background: var(--sage);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 600; font-size: 13px;
+        }
+        .nav-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; font-weight: 600; color: var(--sage-dark);
+        }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-light); text-decoration: none;
+            font-size: 13px; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--sage); }
+        .nav-cta {
+            background: var(--sage) !important; color: #fff !important;
+            padding: 9px 22px; border-radius: 24px; font-weight: 600 !important;
+            font-size: 13px !important; transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--sage-dark) !important; }
+
+        /* HERO */
+        .hero {
+            padding: 160px 20px 100px;
+            background: linear-gradient(160deg, var(--cream) 0%, #fff 40%, var(--sand) 100%);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(92,107,79,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-label {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 500;
+            line-height: 1.15; color: var(--sage-dark); margin-bottom: 20px;
+        }
+        .hero h1 em { font-style: italic; color: var(--sage); }
+        .hero-sub {
+            font-size: 16px; color: var(--text-light); max-width: 520px;
+            margin: 0 auto 36px; line-height: 1.75;
+        }
+        .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .btn-sage {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; background: var(--sage); color: #fff;
+            text-decoration: none; font-weight: 600; font-size: 14px;
+            border-radius: 28px; transition: all 0.3s;
+        }
+        .btn-sage:hover { background: var(--sage-dark); transform: translateY(-1px); }
+        .btn-outline {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; border: 1px solid var(--sage-light); color: var(--sage);
+            text-decoration: none; font-weight: 500; font-size: 14px;
+            border-radius: 28px; transition: all 0.3s;
+        }
+        .btn-outline:hover { background: var(--sage); color: #fff; }
+
+        /* SECTIONS */
+        .section { padding: 80px 20px; }
+        .container { max-width: 1060px; margin: 0 auto; }
+        .section-label {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); text-align: center; margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 500;
+            text-align: center; color: var(--sage-dark); margin-bottom: 12px;
+        }
+        .section-desc {
+            text-align: center; color: var(--text-light);
+            font-size: 15px; max-width: 480px;
+            margin: 0 auto 48px; line-height: 1.7;
+        }
+
+        /* ABOUT */
+        .about { background: #fff; }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center;
+        }
+        .about-visual {
+            width: 100%; aspect-ratio: 3/4; border-radius: 16px;
+            background: linear-gradient(160deg, var(--sage) 0%, var(--sage-dark) 60%, #2d3a25 100%);
+            position: relative; overflow: hidden;
+        }
+        .about-visual::after {
+            content: '🌿'; position: absolute; bottom: 32px; right: 32px;
+            font-size: 64px; opacity: 0.2;
+        }
+        .about-visual .overlay-text {
+            position: absolute; top: 32px; left: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(255,255,255,0.12); font-size: 80px; font-style: italic;
+        }
+        .about-text .label {
+            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 14px;
+        }
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px; font-weight: 500; color: var(--sage-dark);
+            margin-bottom: 20px; line-height: 1.3;
+        }
+        .about-text p {
+            font-size: 15px; line-height: 1.8; color: var(--text-light); margin-bottom: 14px;
+        }
+        .about-text .signature {
+            margin-top: 24px;
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 22px; color: var(--sage);
+        }
+
+        /* DIENSTEN */
+        .diensten { background: var(--cream); }
+        .diensten-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .dienst-card {
+            background: #fff; border-radius: 14px; padding: 28px;
+            border: 1px solid rgba(92,107,79,0.1);
+            transition: all 0.3s;
+        }
+        .dienst-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(92,107,79,0.1);
+            border-color: var(--sage-light);
+        }
+        .dienst-emoji { font-size: 28px; margin-bottom: 14px; }
+        .dienst-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px; font-weight: 600; color: var(--sage-dark);
+            margin-bottom: 8px;
+        }
+        .dienst-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+        .dienst-price {
+            display: inline-block; margin-top: 12px; font-size: 13px;
+            color: var(--sage); font-weight: 600;
+        }
+
+        /* PRIJZEN */
+        .prijzen { background: #fff; }
+        .prijzen-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+            max-width: 800px; margin: 0 auto;
+        }
+        .prijs-card {
+            background: var(--cream); border-radius: 14px; padding: 28px;
+            border: 1px solid rgba(92,107,79,0.08);
+        }
+        .prijs-card.featured {
+            border: 2px solid var(--sage);
+            position: relative;
+        }
+        .prijs-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--sage); color: #fff; padding: 4px 16px;
+            border-radius: 12px; font-size: 11px; font-weight: 600;
+        }
+        .prijs-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; font-weight: 600; color: var(--sage-dark);
+            margin-bottom: 4px;
+        }
+        .prijs-card .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px; font-weight: 600; color: var(--sage);
+            margin: 8px 0;
+        }
+        .prijs-card .price span {
+            font-size: 14px; color: var(--text-light);
+            font-family: 'DM Sans', sans-serif;
+        }
+        .prijs-card ul { list-style: none; margin-top: 16px; }
+        .prijs-card li {
+            padding: 7px 0; font-size: 14px; color: var(--text-light);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .prijs-card li::before {
+            content: "✓"; color: var(--sage); font-weight: 700; font-size: 13px;
+        }
+
+        /* REVIEWS */
+        .reviews { background: var(--cream); }
+        .reviews-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .review-card {
+            background: #fff; border-radius: 14px; padding: 28px;
+            border: 1px solid rgba(92,107,79,0.08);
+        }
+        .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+        .review-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px; font-style: italic; line-height: 1.7;
+            color: var(--text); margin-bottom: 14px;
+        }
+        .review-author { font-size: 13px; font-weight: 600; color: var(--sage-dark); }
+        .review-source { font-size: 11px; color: var(--text-light); }
+
+        /* CONTACT */
+        .contact { background: #fff; }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .contact-card {
+            text-align: center; padding: 28px;
+            background: var(--cream); border-radius: 14px;
+        }
+        .contact-icon { font-size: 28px; margin-bottom: 10px; }
+        .contact-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px; color: var(--sage-dark); margin-bottom: 6px;
+        }
+        .contact-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+        /* CTA */
+        .cta-banner {
+            background: var(--sage); padding: 72px 20px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-banner::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(200,169,126,0.1) 0%, transparent 60%);
+        }
+        .cta-banner h2 {
+            font-family: 'Cormorant Garamond', serif; color: #fff;
+            font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 12px;
+            position: relative;
+        }
+        .cta-banner p {
+            color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 28px;
+            position: relative;
+        }
+        .btn-gold {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 36px; background: var(--gold); color: var(--sage-dark);
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            border-radius: 28px; transition: all 0.3s; position: relative;
+        }
+        .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+        /* FOOTER */
+        footer {
+            background: var(--sage-dark); color: rgba(255,255,255,0.5);
+            padding: 40px 20px; text-align: center;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; color: rgba(255,255,255,0.8); margin-bottom: 8px;
+        }
+        footer p { font-size: 12px; margin: 3px 0; }
+        .footer-copy {
+            margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 12px 16px; }
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-visual { aspect-ratio: 16/9; }
+            .diensten-grid { grid-template-columns: 1fr; }
+            .prijzen-grid { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">PM</div>
+            <div class="nav-logo-text">Puur Marleen</div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#over">Over</a></li>
+            <li><a href="#diensten">Diensten</a></li>
+            <li><a href="#prijzen">Prijzen</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#" class="nav-cta" onclick="document.getElementById('daia-toggle')?.click(); return false;">Afspraak maken</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <p class="hero-label">Groningen</p>
+        <h1>Vind je balans.<br><em>Puur bij Marleen.</em></h1>
+        <p class="hero-sub">Vitaliteitscoaching, bosbaden, Reiki en meer. Ontdek wat jouw lichaam en geest nodig hebben in een persoonlijk en holistisch traject.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-sage" onclick="document.getElementById('daia-toggle')?.click(); return false;">Maak een afspraak</a>
+            <a href="#diensten" class="btn-outline">Bekijk diensten</a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="over">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="overlay-text">Puur</div>
+                </div>
+                <div class="about-text">
+                    <p class="label">Over Marleen</p>
+                    <h2>Luisteren naar je lichaam. In de natuur vind je de rust.</h2>
+                    <p>Ik ben Marleen, gecertificeerd vitaliteitscoach en wandelcoach. Met een achtergrond in bewegingswetenschappen en een passie voor holistische gezondheid help ik mensen hun balans terug te vinden.</p>
+                    <p>Of het nu gaat om stress, energieverlies of het zoeken naar meer rust — samen kijken we naar wat jij nodig hebt. In mijn praktijk in Groningen of buiten in de natuur.</p>
+                    <p>Ik geloof dat gezondheid meer is dan alleen je lichaam. Het gaat om de verbinding tussen lichaam, geest en omgeving.</p>
+                    <div class="signature">Marleen</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIENSTEN -->
+    <section class="section diensten" id="diensten">
+        <div class="container">
+            <p class="section-label">Diensten</p>
+            <h2 class="section-title">Wat ik voor je kan doen</h2>
+            <p class="section-desc">Van coaching in beweging tot diepe ontspanning. Alles draait om jouw welzijn.</p>
+
+            <div class="diensten-grid">
+                <div class="dienst-card">
+                    <div class="dienst-emoji">🚶‍♀️</div>
+                    <h3>Wandel- & Fietscoaching</h3>
+                    <p>Coachgesprekken in beweging, in de natuur. Ideaal voor wie beter nadenkt tijdens het lopen of fietsen.</p>
+                    <span class="dienst-price">Vanaf €85 per sessie</span>
+                </div>
+                <div class="dienst-card">
+                    <div class="dienst-emoji">🌱</div>
+                    <h3>Vitaliteitscoaching</h3>
+                    <p>Persoonlijk traject gericht op energie, voeding, beweging en mentale balans. Met intakegesprek en persoonlijk plan.</p>
+                    <span class="dienst-price">8 weken traject: €495</span>
+                </div>
+                <div class="dienst-card">
+                    <div class="dienst-emoji">🌲</div>
+                    <h3>Bosbaden</h3>
+                    <p>Begeleide Shinrin-yoku ervaring. Wetenschappelijk bewezen stressverlagend. Geschikt voor iedereen.</p>
+                    <span class="dienst-price">Individueel: €75</span>
+                </div>
+                <div class="dienst-card">
+                    <div class="dienst-emoji">✨</div>
+                    <h3>Reiki & Klankschalen</h3>
+                    <p>Energetische behandelingen voor diepe ontspanning. Helpt bij stress, slaapproblemen en emotionele blokkades.</p>
+                    <span class="dienst-price">Reiki: €70 | Combi: €110</span>
+                </div>
+                <div class="dienst-card">
+                    <div class="dienst-emoji">🚴</div>
+                    <h3>Spinning</h3>
+                    <p>Energieke groepslessen op muziek. Geschikt voor alle niveaus, max 8 deelnemers per les.</p>
+                    <span class="dienst-price">Losse les: €15</span>
+                </div>
+                <div class="dienst-card">
+                    <div class="dienst-emoji">💆</div>
+                    <h3>Sportmassage</h3>
+                    <p>Therapeutische massage gericht op spierspanning, herstel na sport en preventie van blessures.</p>
+                    <span class="dienst-price">30 min: €40 | 60 min: €70</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIJZEN -->
+    <section class="section prijzen" id="prijzen">
+        <div class="container">
+            <p class="section-label">Trajecten</p>
+            <h2 class="section-title">Populaire pakketten</h2>
+            <p class="section-desc">Investeer in jezelf met een persoonlijk traject op maat.</p>
+
+            <div class="prijzen-grid">
+                <div class="prijs-card">
+                    <h3>8-Weken Vitaliteit</h3>
+                    <div class="price">&euro;495</div>
+                    <ul>
+                        <li>Uitgebreid intakegesprek</li>
+                        <li>Persoonlijk vitaliteitsplan</li>
+                        <li>6 coachsessies (60 min)</li>
+                        <li>Eindgesprek met evaluatie</li>
+                        <li>Tussentijds contact via app</li>
+                    </ul>
+                </div>
+                <div class="prijs-card featured">
+                    <div class="prijs-badge">Meest gekozen</div>
+                    <h3>12-Weken Transformatie</h3>
+                    <div class="price">&euro;695</div>
+                    <ul>
+                        <li>Alles van 8-weken traject</li>
+                        <li>10 coachsessies (60 min)</li>
+                        <li>2 bosbaden inbegrepen</li>
+                        <li>Supplementadvies op maat</li>
+                        <li>Eindgesprek met evaluatie</li>
+                        <li>Onbeperkt tussentijds contact</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <p class="section-label">Ervaringen</p>
+            <h2 class="section-title">Wat anderen zeggen</h2>
+            <p class="section-desc"></p>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"Na het 12-weken traject voel ik me een ander mens. Meer energie, beter slapen en eindelijk rust in mijn hoofd. Marleen luistert echt."</p>
+                    <p class="review-author">Annemiek V.</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"Het bosbaden was een bijzondere ervaring. Zo simpel en toch zo krachtig. Ik ga nu elke maand. De perfecte reset van mijn drukke werkweek."</p>
+                    <p class="review-author">Thomas R.</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"De wandelcoaching is precies wat ik nodig had. In beweging praat het makkelijker. Marleen stelt de juiste vragen op het juiste moment."</p>
+                    <p class="review-author">Linda K.</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">Neem contact op</h2>
+            <p class="section-desc">Vragen? Benieuwd wat ik voor je kan doen? Neem gerust contact op.</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h4>Locatie</h4>
+                    <p>Praktijk aan huis<br>Groningen</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email</h4>
+                    <p>info@puurmarleen.com</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🕐</div>
+                    <h4>Bereikbaar</h4>
+                    <p>Ma - Vr: 9:00 - 18:00<br>Weekend: buitenactiviteiten</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+        <h2>Klaar voor meer balans?</h2>
+        <p>Start met een vrijblijvend gesprek. Samen kijken we wat bij jou past.</p>
+        <a href="#" class="btn-gold" onclick="document.getElementById('daia-toggle')?.click(); return false;">
+            Chat met Marleen's assistent
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Puur Marleen</div>
+        <p>Vitaliteitscoaching & Holistische Wellness</p>
+        <p>Groningen &middot; info@puurmarleen.com</p>
+        <div class="footer-copy">
+            &copy; 2026 Puur Marleen &middot; Alle rechten voorbehouden
+        </div>
+    </footer>
+
+    <!-- CHAT WIDGET -->
+    <script src="/widget.js" data-server="" data-bot="puurmarleen"></script>
+
+</body>
+</html>

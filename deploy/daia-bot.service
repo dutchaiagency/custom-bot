@@ -1,0 +1,16 @@
+[Unit]
+Description=Dutch AI Agency Chatbot
+After=network.target
+
+[Service]
+Type=simple
+User=daia
+Group=daia
+WorkingDirectory=/opt/custom-bot/backend
+EnvironmentFile=/opt/custom-bot/backend/.env
+ExecStart=/opt/custom-bot/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

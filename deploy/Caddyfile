@@ -1,0 +1,6 @@
+# Vervang YOUR_DOMAIN met je domein (bijv. dutchaiagency.nl)
+# Of gebruik :80 voor alleen HTTP zonder domein
+
+YOUR_DOMAIN {
+    reverse_proxy localhost:8000
+}

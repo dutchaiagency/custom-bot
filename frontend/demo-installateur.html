@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Dijk Installatie - Groningen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #1b4332;
+            --green-light: #2d6a4f;
+            --yellow: #f59e0b;
+            --yellow-light: #fbbf24;
+            --cream: #fefce8;
+            --light: #f8faf5;
+            --text: #1a1a1a;
+            --text-light: #6b7280;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            color: var(--text);
+            background: #fff;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(27, 67, 50, 0.97); backdrop-filter: blur(10px);
+            padding: 14px 48px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 12px;
+            color: #fff; text-decoration: none;
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px; background: var(--yellow);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: var(--green); font-size: 14px;
+        }
+        .nav-logo-text { font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+        .nav-logo-sub { font-size: 11px; opacity: 0.6; font-weight: 400; }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 13px; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--yellow); }
+        .nav-cta {
+            background: var(--yellow) !important; color: var(--green) !important;
+            padding: 8px 20px; border-radius: 6px; font-weight: 600 !important;
+            transition: background 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--yellow-light) !important; }
+
+        /* HERO */
+        .hero {
+            padding: 140px 20px 80px; background: var(--green);
+            position: relative; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 70% 30%, rgba(245,158,11,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(45,106,79,0.4) 0%, transparent 50%);
+        }
+        .hero-inner {
+            max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+            display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+        }
+        .hero-content { color: #fff; }
+        .hero-badge {
+            display: inline-block; background: rgba(245,158,11,0.15);
+            color: var(--yellow); padding: 6px 14px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; margin-bottom: 20px;
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+        .hero-content h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.5rem); line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .hero-content h1 span { color: var(--yellow); }
+        .hero-content p {
+            font-size: 16px; opacity: 0.7; line-height: 1.7;
+            max-width: 480px; margin-bottom: 28px;
+        }
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; background: var(--yellow); color: var(--green);
+            text-decoration: none; font-weight: 700; font-size: 14px;
+            border-radius: 8px; transition: all 0.2s;
+        }
+        .btn-primary:hover { background: var(--yellow-light); transform: translateY(-1px); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border: 1px solid rgba(255,255,255,0.25); color: #fff;
+            text-decoration: none; font-weight: 500; font-size: 14px;
+            border-radius: 8px; transition: all 0.2s;
+        }
+        .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+        .hero-card {
+            background: rgba(255,255,255,0.07); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
+            padding: 32px;
+        }
+        .hero-card h3 { color: #fff; font-size: 18px; margin-bottom: 20px; }
+        .hero-stat { display: flex; align-items: center; gap: 14px; padding: 12px 0; }
+        .hero-stat:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .hero-stat-icon {
+            width: 40px; height: 40px; background: rgba(245,158,11,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+        .hero-stat-text { color: rgba(255,255,255,0.9); font-size: 14px; }
+        .hero-stat-text strong { display: block; color: #fff; font-size: 15px; }
+        .hero-stat-text span { opacity: 0.6; font-size: 13px; }
+
+        /* TRUST BAR */
+        .trust-bar {
+            background: #fff; border-bottom: 1px solid #f0f0f0;
+            padding: 20px; display: flex; justify-content: center;
+            gap: 48px; flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; color: var(--text-light); font-weight: 500;
+        }
+        .trust-item .icon { font-size: 18px; }
+
+        /* SERVICES */
+        .services { padding: 80px 20px; background: var(--light); }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--green); font-weight: 700; text-align: center; margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            text-align: center; margin-bottom: 12px;
+        }
+        .section-desc {
+            text-align: center; color: var(--text-light);
+            font-size: 15px; max-width: 500px;
+            margin: 0 auto 48px; line-height: 1.6;
+        }
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .service-card {
+            background: #fff; border-radius: 12px; padding: 28px;
+            border: 1px solid #e8e8e8; transition: all 0.3s;
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+        .service-icon {
+            width: 48px; height: 48px; background: rgba(27,67,50,0.08);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 16px;
+        }
+        .service-card h3 { font-size: 17px; margin-bottom: 8px; }
+        .service-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+        .service-price {
+            display: inline-block; margin-top: 12px; font-size: 13px;
+            color: var(--green); font-weight: 600;
+        }
+
+        /* USP */
+        .usp {
+            padding: 80px 20px; background: var(--green); color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .usp::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(245,158,11,0.06) 0%, transparent 50%);
+        }
+        .usp-grid {
+            max-width: 1100px; margin: 0 auto; position: relative;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+        }
+        .usp-item { text-align: center; }
+        .usp-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 40px; color: var(--yellow); margin-bottom: 8px;
+        }
+        .usp-label { font-size: 14px; opacity: 0.8; }
+
+        /* REVIEWS */
+        .reviews { padding: 80px 20px; background: #fff; }
+        .reviews-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .review-card {
+            background: var(--light); border-radius: 12px; padding: 28px;
+            border: 1px solid #e8e8e8;
+        }
+        .review-stars { color: var(--yellow); font-size: 16px; margin-bottom: 12px; }
+        .review-text { font-size: 14px; line-height: 1.7; margin-bottom: 16px; color: #444; }
+        .review-author { font-weight: 600; font-size: 13px; }
+        .review-source { font-size: 12px; color: var(--text-light); }
+
+        /* PRICING */
+        .pricing { padding: 80px 20px; background: var(--light); }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+            max-width: 800px; margin: 0 auto;
+        }
+        .pricing-card {
+            background: #fff; border-radius: 12px; padding: 32px;
+            border: 1px solid #e8e8e8;
+        }
+        .pricing-card.featured {
+            border: 2px solid var(--green); position: relative;
+        }
+        .pricing-badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--green); color: #fff; padding: 4px 16px;
+            border-radius: 12px; font-size: 11px; font-weight: 600;
+        }
+        .pricing-card h3 { font-size: 20px; margin-bottom: 4px; }
+        .pricing-card .price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px; color: var(--green); margin: 12px 0;
+        }
+        .pricing-card .price span { font-size: 14px; color: var(--text-light); font-family: 'DM Sans', sans-serif; }
+        .pricing-card ul { list-style: none; margin-top: 16px; }
+        .pricing-card li {
+            padding: 8px 0; font-size: 14px; color: #555;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .pricing-card li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+
+        /* CTA */
+        .cta {
+            padding: 80px 20px; background: var(--green); text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(245,158,11,0.08) 0%, transparent 60%);
+        }
+        .cta h2 {
+            font-family: 'DM Serif Display', serif; color: #fff;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: 12px;
+            position: relative;
+        }
+        .cta p {
+            color: rgba(255,255,255,0.6); font-size: 15px; margin-bottom: 28px;
+            position: relative;
+        }
+
+        /* CONTACT INFO */
+        .contact { padding: 60px 20px; background: #fff; }
+        .contact-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+        }
+        .contact-card { text-align: center; padding: 24px; }
+        .contact-icon { font-size: 28px; margin-bottom: 12px; }
+        .contact-card h4 { font-size: 15px; margin-bottom: 6px; }
+        .contact-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; }
+
+        /* FOOTER */
+        footer {
+            background: #111; color: rgba(255,255,255,0.5);
+            padding: 40px 20px; text-align: center;
+        }
+        .footer-logo { font-weight: 700; color: rgba(255,255,255,0.8); font-size: 16px; margin-bottom: 8px; }
+        footer p { font-size: 12px; margin: 3px 0; }
+        .footer-copy {
+            margin-top: 20px; padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08); font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 12px 16px; }
+            .nav-links { display: none; }
+            .hero-inner { grid-template-columns: 1fr; }
+            .hero-card { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .usp-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .trust-bar { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">VD</div>
+            <div>
+                <div class="nav-logo-text">Van Dijk Installatie</div>
+                <div class="nav-logo-sub">Groningen e.o.</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#diensten">Diensten</a></li>
+            <li><a href="#prijzen">Prijzen</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#" class="nav-cta" onclick="document.getElementById('daia-toggle')?.click(); return false;">Offerte aanvragen</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">24/7 Spoedservice beschikbaar</div>
+                <h1>Uw installateur in <span>Groningen</span></h1>
+                <p>CV-ketels, sanitair, badkamers en duurzame energie. Al sinds 2008 het vertrouwde adres voor installatie en onderhoud in Groningen en omstreken.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" onclick="document.getElementById('daia-toggle')?.click(); return false;">
+                        Gratis offerte aanvragen
+                    </a>
+                    <a href="tel:0503128877" class="btn-secondary">
+                        Bel: 050 - 312 8877
+                    </a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>Waarom Van Dijk?</h3>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">🔧</div>
+                    <div class="hero-stat-text">
+                        <strong>12 eigen monteurs</strong>
+                        <span>Geen onderaannemers</span>
+                    </div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">⚡</div>
+                    <div class="hero-stat-text">
+                        <strong>Zelfde dag bij storing</strong>
+                        <span>Met onderhoudscontract</span>
+                    </div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">⭐</div>
+                    <div class="hero-stat-text">
+                        <strong>4.7 op Google</strong>
+                        <span>180+ beoordelingen</span>
+                    </div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">🛡️</div>
+                    <div class="hero-stat-text">
+                        <strong>2 jaar garantie</strong>
+                        <span>Op al het werk</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-item"><span class="icon">✓</span> Techniek Nederland lid</div>
+        <div class="trust-item"><span class="icon">✓</span> STEK-gecertificeerd</div>
+        <div class="trust-item"><span class="icon">✓</span> Gratis offerte</div>
+        <div class="trust-item"><span class="icon">✓</span> Volledig verzekerd</div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="services" id="diensten">
+        <div class="container">
+            <p class="section-label">Onze Diensten</p>
+            <h2 class="section-title">Wat kunnen we voor u doen?</h2>
+            <p class="section-desc">Van een lekkende kraan tot een complete badkamerrenovatie. Wij regelen het.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3>CV-ketels & Verwarming</h3>
+                    <p>Installatie, onderhoud en reparatie van alle merken. Remeha, Nefit, Intergas, Vaillant. Storing? Wij komen dezelfde dag.</p>
+                    <span class="service-price">Nieuwe ketel vanaf &euro;1.850</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3>Badkamer Renovatie</h3>
+                    <p>Complete ontzorging van ontwerp tot oplevering. In 5-8 werkdagen een volledig nieuwe badkamer. Inclusief tegelwerk.</p>
+                    <span class="service-price">Vanaf &euro;5.500</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Duurzame Energie</h3>
+                    <p>Warmtepompen, zonneboilers en vloerverwarming. Wij adviseren over de beste oplossing en helpen met subsidieaanvraag.</p>
+                    <span class="service-price">Warmtepomp vanaf &euro;4.500</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Sanitair & Loodgieter</h3>
+                    <p>Kranen, leidingen, rioolontstopping. Klein of groot, wij lossen het op. Vakkundig en netjes.</p>
+                    <span class="service-price">Kraan vervangen vanaf &euro;95</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h3>24/7 Spoed</h3>
+                    <p>Waterlekkage, gaslucht of bevroren leidingen? Onze spoedservice is dag en nacht bereikbaar. Wij komen er direct aan.</p>
+                    <span class="service-price">Voorrijkosten &euro;75</span>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Onderhoud</h3>
+                    <p>Jaarlijks onderhoudsabonnement. Voorrang bij storingen, 10% korting op onderdelen, geen voorrijkosten.</p>
+                    <span class="service-price">&euro;99 per jaar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USP -->
+    <section class="usp">
+        <div class="usp-grid">
+            <div class="usp-item">
+                <div class="usp-num">17+</div>
+                <div class="usp-label">Jaar ervaring</div>
+            </div>
+            <div class="usp-item">
+                <div class="usp-num">3.200+</div>
+                <div class="usp-label">Tevreden klanten</div>
+            </div>
+            <div class="usp-item">
+                <div class="usp-num">12</div>
+                <div class="usp-label">Eigen monteurs</div>
+            </div>
+            <div class="usp-item">
+                <div class="usp-num">24/7</div>
+                <div class="usp-label">Spoedservice</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <p class="section-label">Klanten aan het woord</p>
+            <h2 class="section-title">Wat onze klanten zeggen</h2>
+            <p class="section-desc">4.7 sterren op Google met meer dan 180 beoordelingen</p>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"Snelle service toen onze CV-ketel ermee stopte in februari. Monteur was er binnen 3 uur en had hem dezelfde middag weer aan. Top!"</p>
+                    <p class="review-author">Peter K.</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"Hele badkamer laten renoveren door Van Dijk. Van begin tot eind goed geregeld. Netjes opgeruimd en het resultaat is prachtig."</p>
+                    <p class="review-author">Sandra M.</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text">"Al 5 jaar een onderhoudscontract. Nooit problemen, en als er wat is staan ze dezelfde dag op de stoep. Aanrader."</p>
+                    <p class="review-author">Familie Bakker</p>
+                    <p class="review-source">Google Reviews</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="prijzen">
+        <div class="container">
+            <p class="section-label">Onderhoud</p>
+            <h2 class="section-title">Onderhoudscontract</h2>
+            <p class="section-desc">Voorkom storingen en bespaar op reparatiekosten</p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Losse onderhoudsbeurt</h3>
+                    <div class="price">&euro;129</div>
+                    <ul>
+                        <li>Jaarlijkse CV-ketel check</li>
+                        <li>Reiniging en afstelling</li>
+                        <li>Veiligheidscontrole</li>
+                        <li>Storingsrapportage</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Meest gekozen</div>
+                    <h3>Onderhoudsabonnement</h3>
+                    <div class="price">&euro;99 <span>/jaar</span></div>
+                    <ul>
+                        <li>Jaarlijkse onderhoudsbeurt</li>
+                        <li>Voorrang bij storingen</li>
+                        <li>Geen voorrijkosten</li>
+                        <li>10% korting op onderdelen</li>
+                        <li>Verlengde garantie</li>
+                        <li>Zelfde dag service bij storing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Storing? Verbouwing? Vraag?</h2>
+        <p>Chat met onze assistent — direct antwoord, ook buiten kantooruren</p>
+        <a href="#" class="btn-primary" onclick="document.getElementById('daia-toggle')?.click(); return false;" style="position:relative;">
+            Start een gesprek
+        </a>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact">
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h4>Adres</h4>
+                <p>Peizerweg 87<br>9727 AJ Groningen</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h4>Telefoon</h4>
+                <p>050 - 312 8877<br><span style="font-size:12px;">24/7 voor spoed</span></p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🕐</div>
+                <h4>Kantoor</h4>
+                <p>Ma - Vr: 8:00 - 17:00<br>Weekend: spoedservice</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Van Dijk Installatie</div>
+        <p>Peizerweg 87, 9727 AJ Groningen</p>
+        <p>050 - 312 8877 &middot; info@vandijkinstallatie.nl</p>
+        <div class="footer-copy">
+            &copy; 2026 Van Dijk Installatie &middot; KvK 62458901 &middot; Techniek Nederland lid
+        </div>
+    </footer>
+
+    <!-- CHAT WIDGET -->
+    <script src="/widget.js" data-server="" data-bot="vandijk-installatie"></script>
+
+</body>
+</html>
